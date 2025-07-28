@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="favicon.ico" />
+  <title>Reforma Tributária</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    header { background: #1f2937; color: white; padding: 1rem; text-align: center; }
+    nav { display: flex; justify-content: space-around; background: #e5e7eb; }
+    nav button { flex: 1; padding: 1rem; background: none; border: none; font-weight: bold; cursor: pointer; }
+    nav button.active { background: #d1d5db; }
+    section { display: none; padding: 1rem; }
+    section.active { display: block; }
+    .card { background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    a { color: #2563eb; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Reforma Tributária - Time Fiscal</h1>
+  </header>
+  <nav>
+    <button onclick="showTab('noticias')" class="active">📰 Notícias</button>
+    <button onclick="showTab('materiais')">📚 Materiais</button>
+    <button onclick="showTab('agenda')">📅 Agenda</button>
+    <button onclick="showTab('legislacao')">⚖️ Legislação</button>
+  </nav>
+
+  <main>
+    <section id="noticias" class="active">
+      <div class="card">
+        <h2>Fontes de Notícias</h2>
+        <ul>
+          <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias" target="_blank">Receita Federal</a></li>
+          <li><a href="https://www.camara.leg.br/noticias/" target="_blank">Câmara dos Deputados</a></li>
+          <li><a href="https://valor.globo.com/" target="_blank">Valor Econômico</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="materiais">
+      <div class="card">
+        <h2>Materiais de Apoio</h2>
+        <p>Apresentações internas, PDFs explicativos e resumos da EC 132/2023 serão adicionados em breve.</p>
+      </div>
+    </section>
+
+    <section id="agenda">
+      <div class="card">
+        <h2>Agenda Fiscal</h2>
+        <p>🗓️ 10/08 - Webinar: Impactos da CBS no Setor de Serviços</p>
+        <p>🗓️ 18/08 - Palestra Interna: Reforma na Prática</p>
+      </div>
+    </section>
+
+    <section id="legislacao">
+      <div class="card">
+        <h2>Leis e Documentos</h2>
+        <ul>
+          <li><a href="https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm" target="_blank">Emenda Constitucional 132/2023</a></li>
+          <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/reforma-tributaria" target="_blank">Página oficial da Reforma Tributária</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function showTab(tab) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
