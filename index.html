@@ -35,8 +35,12 @@
       <div class="card">
         <h2>Fontes de Notícias</h2>
         <ul>
-          <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias" target="_blank">Receita Federal</a></li>
-          <li><a href="https://www.camara.leg.br/noticias/" target="_blank">Câmara dos Deputados</a></li>
+          <li><a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria" target="_blank">Receita Federal</a></li>
+          <li><a href="https://www.serpro.gov.br/menu/noticias/noticias-2025/reforma-tributaria-novo-portal" target="_blank">SERPRO</a></li>
+          <li><a href="https://www.contabeis.com.br/noticias/71958/simples-nacional-sera-integrado-a-redesim-em-2025/" target="_blanck">Portal Contábeis</a></li>
+          <li><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2025-01/entenda-principais-mudancas-da-reforma-tributaria" target="_blank">Agência Brasil</a></li>
+          <li><a href="https://www12.senado.leg.br/noticias/destaques/reforma-tributaria/pagina/1" target="_blank">Senado</a></li>
+          <li><a href="https://valor.globo.com/" target="_blank">Valor Econômico</a></li>
           <li><a href="https://valor.globo.com/" target="_blank">Valor Econômico</a></li>
         </ul>
       </div>
@@ -50,19 +54,48 @@
     </section>
 
     <section id="agenda">
-      <div class="card">
-        <h2>Agenda Fiscal</h2>
-        <p>🗓️ 10/08 - Webinar: Impactos da CBS no Setor de Serviços</p>
-        <p>🗓️ 18/08 - Palestra Interna: Reforma na Prática</p>
-      </div>
+  <div class="card">
+    <h2>Agenda Fiscal - Webinars Recentes</h2>
+    <p>Fontes: Canal da Receita Federal no YouTube</p>
+    <ul id="webinars" class="text-sm"></ul>
+    <noscript>Ative o JavaScript para carregar os webinars.</noscript>
+  </div>
+</section>
+
+<script>
+  async function carregarWebinars() {
+    const rssUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCqF86CNYNzyIEHbglZQ7rxg'; // Receita Federal
+    const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    try {
+      const res = await fetch(api);
+      const data = await res.json();
+      const container = document.getElementById("webinars");
+      container.innerHTML = "";
+      data.items.slice(0, 5).forEach(item => {
+        const li = document.createElement("li");
+        const date = new Date(item.pubDate).toLocaleDateString("pt-BR");
+        li.innerHTML = `📺 <a href="${item.link}" target="_blank">${date} - ${item.title}</a>`;
+        container.appendChild(li);
+      });
+    } catch (err) {
+      document.getElementById("webinars").innerHTML = "<li>Erro ao carregar vídeos.</li>";
+    }
+  }
+
+  carregarWebinars();
+</script>
+
     </section>
 
     <section id="legislacao">
       <div class="card">
         <h2>Leis e Documentos</h2>
         <ul>
-          <li><a href="https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm" target="_blank">Emenda Constitucional 132/2023</a></li>
-          <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/reforma-tributaria" target="_blank">Página oficial da Reforma Tributária</a></li>
+          <li><a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria/regulamentacao-da-reforma-tributaria/lei-geral-do-ibs-da-cbs-e-do-imposto-seletivo/textos-legais" target="_blank">TEXTOS LEGAIS</a></li>
+          <li><a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria/regulamentacao-da-reforma-tributaria/lei-geral-do-ibs-da-cbs-e-do-imposto-seletivo/apresentacoes" target="_blank">APRESENTAÇÕES</a></li>
+          <li><a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria/regulamentacao-da-reforma-tributaria/lei-geral-do-ibs-da-cbs-e-do-imposto-seletivo/resumos-tecnicos" target="_blank">RESUMOS TÉCNICOS</a></li>
+          <li><a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria/regulamentacao-da-reforma-tributaria/lei-geral-do-ibs-da-cbs-e-do-imposto-seletivo/notas" target="_blank">NOTAS</a></li>
+          <li><a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria/estudos" target="_blank">ESTUDOS</a></li>
         </ul>
       </div>
     </section>
