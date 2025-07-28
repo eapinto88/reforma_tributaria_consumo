@@ -24,10 +24,10 @@
     <h1>Reforma Tributária - Time Fiscal</h1>
   </header>
   <nav>
-    <button onclick="showTab('noticias')" class="active">📰 Notícias</button>
-    <button onclick="showTab('materiais')">📚 Materiais</button>
-    <button onclick="showTab('agenda')">📅 Agenda</button>
-    <button onclick="showTab('legislacao')">⚖️ Legislação</button>
+    <button onclick="showTab('noticias', event)" class="active">📰 Notícias</button>
+    <button onclick="showTab('materiais', event)">📚 Materiais</button>
+    <button onclick="showTab('agenda', event)">📅 Agenda</button>
+    <button onclick="showTab('legislacao', event)">⚖️ Legislação</button>
   </nav>
 
   <main>
@@ -69,7 +69,7 @@
   </main>
 
   <script>
-    function showTab(tab) {
+    function showTab(tab, event) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
       document.getElementById(tab).classList.add('active');
